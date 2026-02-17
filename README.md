@@ -123,4 +123,9 @@ In the last part, we incorporated spatial information more explicitly to predict
 
 ## Files
 
+- `code_California-Housing.R`: R script containing data preprocessing, feature engineering,
+  model estimation and evaluation
+- `report_California-Housing.pdf`: Detailed explanation of the methodology and results
+- `housing.csv`: Training data
+
 
