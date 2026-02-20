@@ -56,37 +56,64 @@ We fitted several Bayesian linear regression models with different prior choices
 
 ### 1. Non-informative prior
 
-- Likelihood: standard Gaussian linear model  
-  \( Y_i | x_i, \beta, \sigma^2 \sim \mathcal{N}(x_i^T \beta, \sigma^2) \).  
-- Prior: vague, improper prior  
-  \( \pi(\beta, \sigma^2) \propto \sigma^{-2} \).  
+- **Likelihood**: standard Gaussian linear model  
+
+$$
+Y_i \mid x_i, \beta, \sigma^2 \sim \mathcal{N}(x_i^T \beta, \sigma^2)
+$$
+
+- **Prior**: vague, improper prior  
+
+$$
+\pi(\beta, \sigma^2) \propto \sigma^{-2}
+$$
 
 This leads to closed-form full conditionals and a **collapsed Gibbs sampler**:
 
-- Sample \(\sigma^2\) from an Inverse-Gamma distribution based on ML residuals.  
-- Sample \(\beta\) from a multivariate Normal conditional on \(\sigma^2\).  
+- Sample $\sigma^2$ from an Inverse-Gamma distribution based on ML residuals  
+- Sample $\beta$ from a multivariate Normal conditional on $\sigma^2$  
 
 This model is mainly used as a baseline to assess how much the data alone can drive inference.
+
+---
 
 ### 2. Unit information prior
 
 To introduce a weakly informative prior while preserving robustness, we used a **unit information prior**:
 
-- \(\beta | \sigma^2 \sim \mathcal{N}(\hat{\beta}_{OLS}, s_{OLS}^2 (X^T X)^{-1})\).  
-- \(\sigma^2 \sim IG(\nu_0/2, \nu_0 s_{OLS}^2 /2)\) with \(\nu_0 = 5\).  
+$$
+\beta \mid \sigma^2 \sim \mathcal{N}\!\left(\hat{\beta}_{OLS},\; s_{OLS}^2 (X^T X)^{-1}\right)
+$$
 
-This prior is roughly equivalent to adding a small number of “pseudo-observations” and ensures finite moments for \(\sigma^2\).  
+$$
+\sigma^2 \sim IG\!\left(\nu_0/2,\; \nu_0 s_{OLS}^2 / 2\right), \qquad \nu_0 = 5
+$$
+
+This prior is roughly equivalent to adding a small number of pseudo-observations and ensures finite moments for $\sigma^2$.  
+
 Inference was performed via MCMC (Stan) with multiple chains and convergence diagnostics (traceplots, ESS, Geweke statistics).
+
+---
 
 ### 3. Shrinkage prior (Ridge-like)
 
 We then introduced **shrinkage** on regression coefficients:
 
-- \(\beta_j | \sigma^2, \lambda \sim \mathcal{N}(0, \sigma^2 / \lambda)\).  
-- \(\lambda \sim \text{Gamma}(1, 1)\).  
-- \(\sigma^2 \sim IG(a_0, b_0)\) with hyperparameters chosen to match empirical variance.  
+$$
+\beta_j \mid \sigma^2, \lambda \sim \mathcal{N}(0, \sigma^2 / \lambda)
+$$
 
-This hierarchical prior shrinks coefficients towards zero similarly to Ridge regression, but with the shrinkage strength \(\lambda\) estimated from the data.  
+$$
+\lambda \sim \text{Gamma}(1, 1)
+$$
+
+$$
+\sigma^2 \sim IG(a_0, b_0)
+$$
+
+with hyperparameters chosen to match empirical variance.
+
+This hierarchical prior shrinks coefficients towards zero similarly to Ridge regression, with the shrinkage strength $\lambda$ estimated from the data.  
 Inference was again carried out in Stan using MCMC.
 
 ---
