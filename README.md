@@ -86,7 +86,7 @@ $$
 $$
 
 $$
-\sigma^2 \sim IG\!\left(\nu_0/2,\; \nu_0 s_{OLS}^2 / 2\right), \qquad \nu_0 = 5
+\sigma^2 \sim IG\left(\nu_0/2\; \nu_0 s_{OLS}^2 / 2\right), \qquad \nu_0 = 5
 $$
 
 This prior is roughly equivalent to adding a small number of pseudo-observations and ensures finite moments for $\sigma^2$.  
