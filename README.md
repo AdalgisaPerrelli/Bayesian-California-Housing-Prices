@@ -33,7 +33,7 @@ We removed rows with missing values in `total_bedrooms` (only variable with NAs)
 ## Exploratory analysis and pre-processing
 
 - Mapped California districts with point size proportional to `population` and colour representing `median_house_value`, to visualize spatial patterns.  
-- Examined univariate distributions of quantitative variables; `households`, `population`, `total_bedrooms`, and `total_rooms` showed strong right skewness and outliers.  
+- Examined univariate distributions of quantitative variables; `households`, `population`, `total_bedrooms` and `total_rooms` showed strong right skewness and outliers.  
 - Transformed `ocean_proximity` using one-hot encoding and found a clear positive relationship between proximity to the coast and `median_house_value`.  
 - Performed correlation analysis:  
   - Strong correlations among `households`, `population`, `total_rooms`, `total_bedrooms`.  
