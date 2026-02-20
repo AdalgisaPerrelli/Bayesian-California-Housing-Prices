@@ -82,7 +82,7 @@ This model is mainly used as a baseline to assess how much the data alone can dr
 To introduce a weakly informative prior while preserving robustness, we used a **unit information prior**:
 
 $$
-\beta \mid \sigma^2 \sim \mathcal{N}\!\left(\hat{\beta}_{OLS},\; s_{OLS}^2 (X^T X)^{-1}\right)
+\beta \mid \sigma^2 \sim \mathcal{N}\left(\hat{\beta}_{OLS},\; s_{OLS}^2 (X^T X)^{-1}\right)
 $$
 
 $$
