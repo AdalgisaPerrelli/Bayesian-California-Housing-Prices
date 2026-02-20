@@ -45,7 +45,7 @@ To capture spatial structure, we created a new covariate:
 
 Given the skewness of some variables:
 
-- Standardised `housing_median_age`, `total_rooms`, `population`, `median_income`, and `diag_coord`.  
+- Standardised `housing_median_age`, `total_rooms`, `population`, `median_income` and `diag_coord`.  
 - Log-transformed and then standardised `median_house_value`, obtaining an approximately Normal response distribution.
 
 ---
